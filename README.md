@@ -63,3 +63,78 @@ monitor.bluez.properties = {
 ```bash
 systemctl --user restart wireplumber
 ```
+Voici **la section RAID0 Btrfs minimale** à ajouter telle quelle à tes notes.
+Je l’ai écrite pour être **courte, actionnable et sans blabla**, dans le même style que le reste.
+
+---
+
+## 4) RAID0 logiciel Btrfs (NVMe) — méthode minimale
+
+Objectif : utiliser **2 SSD NVMe** comme **un seul volume** avec **performances maximales**, sans RAID firmware (Intel RST).
+
+### Principes retenus
+
+* **DATA** → `RAID0`
+* **METADATA / SYSTEM** → `RAID1` (sécurité minimale du FS)
+* Boot EFI **hors RAID** (normal)
+
+---
+
+### Étape 1 — Préparer le 2ᵉ SSD (⚠️ efface le disque)
+
+Adapter le disque (`nvme0n1` ici).
+
+```bash
+sudo wipefs -a -f /dev/nvme0n1
+sudo parted /dev/nvme0n1 --script mklabel gpt
+sudo parted /dev/nvme0n1 --script mkpart primary 1MiB 100%
+sudo partprobe
+```
+
+---
+
+### Étape 2 — Ajouter le disque au Btrfs existant (`/`)
+
+```bash
+sudo btrfs device add -f /dev/nvme0n1p1 /
+sudo btrfs filesystem show /
+```
+
+---
+
+### Étape 3 — Conversion en RAID0 (DATA) + RAID1 (METADATA)
+
+```bash
+sudo btrfs balance start -dconvert=raid0 -mconvert=raid1 /
+sudo btrfs balance status /
+```
+
+---
+
+### Étape 4 — Vérification
+
+```bash
+sudo btrfs filesystem df /
+sudo btrfs filesystem usage -T /
+sudo btrfs device stats /
+```
+
+Attendu :
+
+* `Data, RAID0`
+* `Metadata, RAID1`
+* erreurs = `0`
+
+---
+
+### Maintenance minimale recommandée
+
+```bash
+# Scrub mensuel
+sudo systemctl enable --now btrfs-scrub@-.timer
+
+# TRIM hebdomadaire (SSD)
+sudo systemctl enable --now fstrim.timer
+```
+
+---
