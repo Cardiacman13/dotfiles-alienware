@@ -11,7 +11,7 @@ WINE_CPU_TOPOLOGY=16:0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 __GL_SHADER_DISK_CACH
 **Notes rapides :**
 
 * `WINE_CPU_TOPOLOGY=16:...` : Ne concerne que les CPU Intel E-cores + P-Cores, utilise les 16 premiers threads de mon CPU pour le jeu ignorant les E-Cores
-* `DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION=render_preset_m` Important de forcer le modèle m update le dlls n'est pas suffisant
+* `DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION=render_preset_m` Important de forcer le modèle m update les dlls du dlss n'est pas suffisant
 
 ---
 
