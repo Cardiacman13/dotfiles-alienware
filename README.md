@@ -19,12 +19,12 @@ Pour les E-cores, je peux lancer steam avec systemd-run pour l'autoriser à util
 
 Si je fais ça plus besoin de WINE_CPU_TOPOLOGY=.
 
-Améliorer la vitesse de téléchargement :
+Améliorer la vitesse de téléchargement et compilation des shaders sur mes 32 threads:
 
 ```bash
 echo "@nClientDownloadEnableHTTP2PlatformLinux 0" >> ~/.steam/steam/steam_dev.cfg
 echo "@fDownloadRateImprovementToAddAnotherConnection 1.0" >> ~/.steam/steam/steam_dev.cfg
-
+echo "unShaderBackgroundProcessingThreads 32" >> ~/.steam/steam/steam_dev.cfg
 ```
 ---
 
