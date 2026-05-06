@@ -5,13 +5,13 @@
 **Steam → Propriétés du jeu → Options de lancement** :
 
 ```bash
-WINE_CPU_TOPOLOGY=16:0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1 PROTON_DLSS_UPGRADE=1 DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION=render_preset_m PROTON_ENABLE_WAYLAND=1 PROTON_USE_NTSYNC=1 game-performance %command%
+WINE_CPU_TOPOLOGY=16:0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1 PROTON_DLSS_UPGRADE=1 DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION=render_preset_l PROTON_ENABLE_WAYLAND=1 game-performance %command%
 ```
 
 **Notes rapides :**
 
 * `WINE_CPU_TOPOLOGY=16:...` : Ne concerne que les CPU Intel E-cores + P-Cores, utilise les 16 premiers threads de mon CPU pour le jeu ignorant les E-Cores
-* `DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION=render_preset_m` Important de forcer le modèle m update les dlls du dlss n'est pas suffisant
+* `DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION=render_preset_l` Important de forcer le modèle m update les dlls du dlss n'est pas suffisant
 
 Pour les E-cores, je peux lancer steam avec systemd-run pour l'autoriser à utiliser les P-cores et bloquer tout le reste du système sur le e-cores. kate `/etc/systemd/system.conf` mettre `CPUAffinity=16-31` et corriger le raccourcis de steam avec `/usr/bin/systemd-run` et `--user --pty --same-dir --wait --collect -p AllowedCPUs=0-15 /usr/bin/steam %U`.
 
@@ -19,6 +19,13 @@ Pour les E-cores, je peux lancer steam avec systemd-run pour l'autoriser à util
 
 Si je fais ça plus besoin de WINE_CPU_TOPOLOGY=.
 
+Améliorer la vitesse de téléchargement :
+
+```bash
+echo "@nClientDownloadEnableHTTP2PlatformLinux 0" >> ~/.steam/steam/steam_dev.cfg
+echo "@fDownloadRateImprovementToAddAnotherConnection 1.0" >> ~/.steam/steam/steam_dev.cfg
+
+```
 ---
 
 ## 2) Augmenter la taille du shader cache NVIDIA (12 Go)
