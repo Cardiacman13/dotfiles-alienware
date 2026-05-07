@@ -10,8 +10,8 @@ WINE_CPU_TOPOLOGY=16:0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 __GL_SHADER_DISK_CACH
 
 **Notes rapides :**
 
-* `WINE_CPU_TOPOLOGY=16:...` : Ne concerne que les CPU Intel E-cores + P-Cores, utilise les 16 premiers threads de mon CPU pour le jeu ignorant les E-Cores
-* `DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION=render_preset_l` Important de forcer le modèle m update les dlls du dlss n'est pas suffisant
+* `WINE_CPU_TOPOLOGY=16:...` : Ne concerne que les CPU Intel E-cores + P-Cores et encore plus précisément mon 14900hx, utilise les 16 premiers threads de mon CPU pour le jeu ignorant les E-Cores
+* `DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION=render_preset_l` Important de forcer le modèle l, update les dlls du dlss n'est pas suffisant
 
 Pour les E-cores, je peux lancer steam avec systemd-run pour l'autoriser à utiliser les P-cores et bloquer tout le reste du système sur le e-cores. kate `/etc/systemd/system.conf` mettre `CPUAffinity=16-31` et corriger le raccourcis de steam avec `/usr/bin/systemd-run` et `--user --pty --same-dir --wait --collect -p AllowedCPUs=0-15 /usr/bin/steam %U`.
 
