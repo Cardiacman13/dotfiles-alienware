@@ -92,7 +92,7 @@ Objectif : utiliser **2 SSD NVMe** comme **un seul volume** avec **performances 
 
 ### Étape 1 — Préparer le 2ᵉ SSD (⚠️ efface le disque)
 
-Adapter le disque (`nvme0n1` ici).
+à adapter (`nvme0n1` ici).
 
 ```bash
 sudo wipefs -a -f /dev/nvme0n1
@@ -134,17 +134,3 @@ Attendu :
 * `Data, RAID0`
 * `Metadata, RAID1`
 * erreurs = `0`
-
----
-
-### Maintenance minimale recommandée
-
-```bash
-# Scrub mensuel
-sudo systemctl enable --now btrfs-scrub@-.timer
-
-# TRIM hebdomadaire (SSD)
-sudo systemctl enable --now fstrim.timer
-```
-
----
