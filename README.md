@@ -8,7 +8,7 @@
 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1 PROTON_DLSS_UPGRADE=1 DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE_RENDER_PRESET_SELECTION=render_preset_l PROTON_ENABLE_WAYLAND=1 game-performance %command%
 ```
 
-En cas de craquements audios ou stutters je peux soit nutiliser que mes P-Cores : `WINE_CPU_TOPOLOGY=16:0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15` soit utiliser un scheduler qui gère mieux ça comme flash en monde low latency.
+En cas de craquements audio ou stutters je peux soit utiliser que mes P-Cores : `WINE_CPU_TOPOLOGY=16:0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15` soit utiliser un scheduler qui gère mieux ça comme flash en monde low latency.
 
 **Notes rapides :**
 
