@@ -145,5 +145,5 @@ Attendu :
 
 `systemctl mask NetworkManager-wait-online.service cachyos-rate-mirrors.timer`
 
-`sudo pacman -S --asexplicit linux-firmware-intel linux-firmware-whence linux-firmware-nvidia inux-firmware-realtek`
+`sudo pacman -S --asexplicit linux-firmware-intel linux-firmware-whence linux-firmware-nvidia linux-firmware-realtek`
 `sudo pacman -Rns linux-firmware linux-firmware-amdgpu linux-firmware-radeon linux-firmware-atheros linux-firmware-broadcom linux-firmware-mediatek linux-firmware-cirrus linux-firmware-other`
