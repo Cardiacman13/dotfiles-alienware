@@ -139,7 +139,7 @@ Attendu :
 
 `sudo nano /boot/limine.conf timeout: 0` puis `sudo limine-update`
 
-`sudo nano /etc/mkinitcpio.conf` virer base et plymouth et mettre `COMPRESSION="lz4"` et `COMPRESSION_OPTIONS=("--fast=65537")` puis `sudo mkinitcpio -P`
+`sudo nano /etc/mkinitcpio.conf` virer base et plymouth et utiliser qu systemd `HOOKS=(systemd autodetect modconf block filesystems keyboard sd-vconsole fsck)` et mettre `COMPRESSION="lz4"` et `COMPRESSION_OPTIONS=("--fast=65537")` puis `sudo mkinitcpio -P`
 
 `sudo pacman -Rns plymouth plymouth-kcm cachyos-plymouth-theme cachyos-plymouth-bootanimation`
 
