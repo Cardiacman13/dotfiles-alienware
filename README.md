@@ -134,3 +134,13 @@ Attendu :
 * `Data, RAID0`
 * `Metadata, RAID1`
 * erreurs = `0`
+
+## 5) Unbloat / fastboot
+
+`sudo nano /boot/limine.conf timeout: 0` puis sudo `limine update`
+
+`sudo pacman -Rns plymouth plymouth-kcm cachyos-plymouth-theme cachyos-plymouth-bootanimation`
+
+`sudo nano /etc/mkinitcpio.conf` virer base et plymouth et mettre `COMPRESSION="lz4"` et `COMPRESSION_OPTIONS=("--fast=65537")` puis `sudo mkinitcpio -P`
+
+`systemctl mask NetworkManager-wait-online.service cachyos-rate-mirrors.timer`
