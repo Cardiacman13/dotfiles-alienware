@@ -144,3 +144,6 @@ Attendu :
 `sudo nano /etc/mkinitcpio.conf` virer base et plymouth et mettre `COMPRESSION="lz4"` et `COMPRESSION_OPTIONS=("--fast=65537")` puis `sudo mkinitcpio -P`
 
 `systemctl mask NetworkManager-wait-online.service cachyos-rate-mirrors.timer`
+
+`sudo pacman -S --asexplicit linux-firmware-intel linux-firmware-whence linux-firmware-nvidia inux-firmware-realtek`
+`sudo pacman -Rns linux-firmware linux-firmware-amdgpu linux-firmware-radeon linux-firmware-atheros linux-firmware-broadcom linux-firmware-mediatek linux-firmware-cirrus linux-firmware-other`
